@@ -113,15 +113,20 @@ class Game_Manager(Thread):
         self.game_counter.decrement()
 
     def _get_next_challenge_id(self) -> Challenge_ID | None:
+        print('open challenges', self.open_challenge_ids)
         if not self.open_challenge_ids:
             return
 
+        print('reserved games', self.reserved_game_ids)
+        print('game counter', self.game_counter.counter)
         if self.game_counter.is_max(len(self.reserved_game_ids)):
+            print('game counter is max')
             return
 
         return self.open_challenge_ids.popleft()
 
     def _accept_challenge(self, challenge_id: Challenge_ID) -> None:
+        print('accepting challenge', challenge_id)
         if self.api.accept_challenge(challenge_id):
             # Reserve a spot for this game
             self.reserved_game_ids.append(challenge_id)

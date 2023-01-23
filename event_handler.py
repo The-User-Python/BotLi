@@ -33,6 +33,8 @@ class Event_Handler(Thread):
             except queue.Empty:
                 continue
 
+            print(event)
+
             if event['type'] == 'challenge':
                 challenger_name = event['challenge']['challenger']['name']
 

@@ -29,6 +29,7 @@ class Game(Thread):
             event = game_queue.get()
 
             if event['type'] == 'gameFull':
+                print(event)
                 if not self.lichess_game:
                     print(f'Game "{self.game_id}" was started.')
                     self.lichess_game = Lichess_Game(self.api, event, self.config)

@@ -33,9 +33,8 @@ class Event_Handler(Thread):
             except queue.Empty:
                 continue
 
-            print(event)
-
             if event['type'] == 'challenge':
+                print(event)
                 challenger_name = event['challenge']['challenger']['name']
 
                 if challenger_name == self.api.user['username']:
